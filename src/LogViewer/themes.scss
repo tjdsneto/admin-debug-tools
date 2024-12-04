@@ -1,0 +1,94 @@
+html.adbtl-fullscren {
+	body {
+		max-height: 100vh;
+		overflow: hidden;
+	}
+}
+
+.adbtl-log-viewer {
+	font-size: 13px;
+
+	table {
+		tbody {
+			tr {
+				td {
+					vertical-align: top;
+				}
+			}
+		}
+
+		/* This is the key addition */
+		tbody::after {
+			content: '';
+			display: table-row;
+			height: 100%;
+		}
+	}
+
+	/* width */
+	::-webkit-scrollbar {
+		height: 8px;
+		width: 8px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: theme('colors.slate.500');
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: theme('colors.slate.900');
+		border-radius: 5px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: theme('colors.slate.700');
+	}
+}
+
+.adbtl-log-viewer-theme--dark {
+	--adbtl-log-viewer-bg-color: theme('colors.slate.800');
+	--adbtl-log-viewer-text-color: theme('colors.white');
+	--adbtl-log-viewer-border-color: theme('colors.slate.400');
+
+	/* Button */
+	--adbtl-log-viewer-button-border-color: theme('colors.slate.600');
+	--adbtl-log-viewer-button-hover-border-color: theme('colors.slate.900');
+
+	/* Form Input */
+	--adbtl-log-viewer-input-bg-color: theme('colors.slate.600');
+	--adbtl-log-viewer-input-border-color: theme('colors.slate.500');
+	--adbtl-log-viewer-input-text-color: theme('colors.slate.100');
+
+	--adbtl-log-viewer-input-hover-text-color: theme('colors.slate.500');
+	--adbtl-log-viewer-input-hover-bg-color: theme('colors.slate.500');
+
+	--adbtl-log-viewer-input-active-text-color: theme('colors.slate.50');
+	--adbtl-log-viewer-input-active-bg-color: theme('colors.sky.600');
+	--adbtl-log-viewer-input-active-border-color: theme('colors.sky.500');
+
+	/* Log Line */
+	--adbtl-log-viewer-log-line-border-color: theme('colors.slate.700');
+	--adbtl-log-viewer-log-line-hover-bg-color: theme('colors.slate.800');
+
+	--adbtl-log-viewer-log-line-number-text-color: theme('colors.slate.600');
+	--adbtl-log-viewer-log-line-number-bg-color: theme('colors.slate.800');
+
+	--adbtl-log-viewer-log-line-date-text-color: theme('colors.slate.400');
+
+	--adbtl-log-viewer-log-line-expand-collapse-text-color: theme('colors.slate.400');
+
+	--adbtl-log-viewer-stacktrace-link-text-color: theme('colors.slate.400');
+}
+
+.adbtl-log-viewer-theme--light {
+	--adbtl-log-viewer-bg-color: theme('colors.slate.100');
+	--adbtl-log-viewer-text-color: theme('colors.black');
+	--adbtl-log-viewer-border-color: theme('colors.slate.300');
+
+	/* Button */
+	--adbtl-log-viewer-button-border-color: theme('colors.slate.400');
+	--adbtl-log-viewer-button-hover-border-color: theme('colors.slate.600');
+}

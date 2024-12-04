@@ -1,0 +1,16 @@
+.DS_Store
+.idea
+.svn
+vendor/
+build/
+node_modules/
+release/
+.vscode
+.env*
+!.env.example
+/phpcs.xml
+/phpspec.yml
+/phpunit.xml
+.phpunit*
+*.code-workspace
+.local

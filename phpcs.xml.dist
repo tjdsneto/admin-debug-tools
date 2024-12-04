@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Admin Debug Tools WordPress Plugin" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+	<description>A custom set of rules to check for a WPized WordPress project</description>
+
+	<!-- Only scan PHP files. -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Exclude WP Core folders and files from being checked. -->
+	<exclude-pattern>/docroot/wp-admin/*</exclude-pattern>
+	<exclude-pattern>/docroot/wp-includes/*</exclude-pattern>
+	<exclude-pattern>/docroot/wp-*.php</exclude-pattern>
+	<exclude-pattern>/docroot/index.php</exclude-pattern>
+	<exclude-pattern>/docroot/xmlrpc.php</exclude-pattern>
+	<exclude-pattern>/docroot/wp-content/plugins/*</exclude-pattern>
+
+	<!-- Exclude the Composer Vendor directory. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<!-- Exclude the Node Modules directory. -->
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+
+	<!-- Exclude minified Javascript files. -->
+	<exclude-pattern>*.min.js</exclude-pattern>
+
+	<rule ref="WordPress">
+		<!-- Exceptions can be escaped before outputting not when thrown -->
+		<exclude name="WordPress.Security.EscapeOutput.ExceptionNotEscaped"/>
+	</rule>
+
+	<!-- Include the WordPress-Core standard. -->
+	<rule ref="WordPress-Core"/>
+
+	<!-- Include the WordPress-Extra standard. -->
+	<rule ref="WordPress-Extra">
+		<!--
+		We may want a middle ground though. The best way to do this is add the
+		entire ruleset, then rule by rule, remove ones that don't suit a project.
+		We can do this by running `phpcs` with the '-s' flag, which allows us to
+		see the names of the sniffs reporting errors.
+		Once we know the sniff names, we can opt to exclude sniffs which don't
+		suit our project like so.
+
+		The below two examples just show how you can exclude rules.
+		They are not intended as advice about which sniffs to exclude.
+		-->
+
+		<!--
+		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+		<exclude name="WordPress.Security.EscapeOutput"/>
+		-->
+
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<exclude name="Generic.Commenting.Todo.TaskFound"/>
+	</rule>
+
+	<!-- Let's also check that everything is properly documented. -->
+	<rule ref="WordPress-Docs"/>
+
+	<!-- Add in some extra rules from other standards. -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+	<rule ref="Generic.Commenting.Todo"/>
+
+	<!-- Check for PHP cross-version compatibility. -->
+	<!--
+	To enable this, the PHPCompatibilityWP standard needs
+	to be installed.
+	See the readme for installation instructions:
+	https://github.com/PHPCompatibility/PHPCompatibilityWP
+	For more information, also see:
+	https://github.com/PHPCompatibility/PHPCompatibility
+	-->
+	<config name="testVersion" value="7.4-"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!--
+	To get the optimal benefits of using WPCS, we should add a couple of
+	custom properties.
+	Adjust the values of these properties to fit our needs.
+
+	For information on additional custom properties available, check out
+	the wiki:
+	https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
+	-->
+	<config name="minimum_supported_wp_version" value="5.6.0"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="admin-debug-tools"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="adbtl"/>
+				<element value="admin_debug_tools"/>
+				<element value="AdminDebugTools"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!--
+	WordPress-Extra doesn't include the security standards so we add them in
+	here. Core functions for URLs and templating are considered trusted and
+	added to the allow list via custom properties.
+
+	Based on the HM-Minimum standard see github.com/humanmade/coding-standards.
+	-->
+
+	<rule ref="WordPress.Security"/>
+
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<!-- Allow all the built-in URL functions -->
+				<element value="home_url" />
+				<element value="get_home_url" />
+				<element value="site_url" />
+				<element value="get_site_url" />
+				<element value="admin_url" />
+				<element value="get_admin_url" />
+				<element value="includes_url" />
+				<element value="content_url" />
+				<element value="plugins_url" />
+				<element value="network_site_url" />
+				<element value="network_home_url" />
+				<element value="network_admin_url" />
+				<element value="user_admin_url" />
+				<element value="self_admin_url" />
+
+				<!-- Other URL functions -->
+				<element value="get_template_directory_uri" />
+				<element value="get_theme_file_uri" />
+				<element value="get_term_link" />
+				<element value="wp_nonce_url" />
+
+				<!-- Other templating tags. -->
+				<element value="paginate_links" />
+				<element value="get_the_title" />
+				<element value="get_post_gallery" /> <!-- with param 2 set to true, the default -->
+
+				<!-- Miscellaneous core functions -->
+				<element value="get_admin_page_title" />
+
+				<!-- Plugin functions (unfortunately wpcs doesn't support namespaces or class::method syntax) -->
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Validate sanitised input. -->
+	<rule ref="WordPress.Security.ValidatedSanitizedInput">
+		<properties>
+			<property name="customUnslashingSanitizingFunctions" type="array">
+				<!-- Allow checking nonces without sanitization. -->
+				<element value="wp_verify_nonce" />
+			</property>
+
+			<property name="customSanitizingFunctions" type="array">
+				<!--
+					Decoding isn't technically a sanitisation function,
+					however you can't really sanitize JSON input.
+				-->
+				<element value="json_decode" />
+
+				<!-- wp_trim_words() uses wp_strip_all_tags() internally. -->
+				<element value="wp_trim_words" />
+			</property>
+		</properties>
+	</rule>
+
+</ruleset>

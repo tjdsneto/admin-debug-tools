@@ -1,0 +1,10 @@
+# Define the top-most directory for the .editorconfig file.
+root = true
+
+# Global rules for all files.
+[*]
+end_of_line = lf
+insert_final_newline = true
+indent_style = tab
+indent_size = 4
+trim_trailing_whitespace = true

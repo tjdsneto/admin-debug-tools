@@ -1,0 +1,338 @@
+# Copyright (C) 2024 Tiago Neto
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Admin Debug Tools 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/admin-debug-tools\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-12-04T00:17:29+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: admin-debug-tools\n"
+
+#. Plugin Name of the plugin
+#: admin-debug-tools.php
+msgid "Admin Debug Tools"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: admin-debug-tools.php
+msgid "https://tjdsneto.com/admin-debug-tools"
+msgstr ""
+
+#. Description of the plugin
+#: admin-debug-tools.php
+msgid "Admin Debug Tools makes it easy to manage your site's logs and debug settings directly from the dashboard, without needing to edit backend files."
+msgstr ""
+
+#. Author of the plugin
+#: admin-debug-tools.php
+msgid "Tiago Neto"
+msgstr ""
+
+#. Author URI of the plugin
+#: admin-debug-tools.php
+msgid "https://tjdsneto.com"
+msgstr ""
+
+#: includes/Bootstrap/Admin/Pages.php:54
+#: includes/Bootstrap/Admin/Pages.php:55
+msgid "Debug Log"
+msgstr ""
+
+#. translators: %1$s - Admin Debug Tools plugin URL, %2$s - plugin version number
+#: includes/Bootstrap/Admin/Pages.php:115
+msgid "<a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Admin Debug Tools v%2$s</a>"
+msgstr ""
+
+#. translators: %1$s - Adming Debug Log plugin reviews url - Adming Debug Log is the name of the plugin.
+#: includes/Bootstrap/Admin/Pages.php:136
+msgid "Thank you for using the <strong>Adming Debug Log</strong> plugin! Please, let us know how are you liking it on <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">WordPress.org</a> and help us improve."
+msgstr ""
+
+#: includes/Exceptions/RestApi/RestApiException.php:137
+msgid "An unexpected error occurred."
+msgstr ""
+
+#: includes/Plugin.php:140
+msgid "Log file not found or inaccessible."
+msgstr ""
+
+#: includes/Plugin.php:146
+msgid "Error while trying to parse the log file."
+msgstr ""
+
+#: includes/RestApi/Controllers/BaseController.php:61
+msgid "The payload is required."
+msgstr ""
+
+#. translators: 1: JSON property name.
+#: includes/RestApi/Controllers/BaseController.php:70
+#: includes/RestApi/Controllers/BaseController.php:110
+msgid "Missing JSON property: %1$s"
+msgstr ""
+
+#: includes/RestApi/Controllers/BaseController.php:154
+msgid "Invalid validation rule."
+msgstr ""
+
+#. translators: Invalid param error. 1: the param name.
+#: includes/RestApi/Controllers/BaseController.php:170
+msgid "Missing required value for \"%1$s\" param."
+msgstr ""
+
+#. translators: Invalid param error. 1: the invalid value, 2: the param name.
+#: includes/RestApi/Controllers/BaseController.php:179
+#: includes/RestApi/Controllers/BaseController.php:188
+msgid "Invalid value \"%1$s\" for \"%2$s\" param."
+msgstr ""
+
+#: includes/RestApi/Controllers/WpConfigController.php:233
+msgid "Failed to create the log file directory."
+msgstr ""
+
+#: includes/RestApi/Controllers/WpConfigController.php:236
+msgid "The log file directory does not exist and should be created first."
+msgstr ""
+
+#. translators: %s: Current date and time
+#: includes/RestApi/Controllers/WpConfigController.php:242
+msgid "Test log entry: %s"
+msgstr ""
+
+#: includes/RestApi/Controllers/WpConfigController.php:266
+msgid "The log file is not writable."
+msgstr ""
+
+#: includes/RestApi/Controllers/WpConfigController.php:269
+msgid "A testing log entry was successfully found. Check the WP_DEBUG_LOG config."
+msgstr ""
+
+#: includes/RestApi/Controllers/WpConfigController.php:274
+msgid "The log file directory is not writable."
+msgstr ""
+
+#: includes/RestApi/Controllers/WpConfigController.php:277
+msgid "The log file did not get created. Check the WP_DEBUG_LOG config."
+msgstr ""
+
+#: includes/RestApi/RestApi.php:156
+#: includes/RestApi/RestApi.php:187
+msgid "Invalid route."
+msgstr ""
+
+#: includes/RestApi/RestApi.php:207
+msgid "The handler for the route is invalid"
+msgstr ""
+
+#: build/index.0790c1b17c074467ccab.hot-update.js:167
+#: build/index.js:10545
+#: src/LogViewer/LogViewerEntries.js:142
+#: build/index.0790c1b17c074467ccab.hot-update.js:142
+msgid "Loading…"
+msgstr ""
+
+#: build/index.0790c1b17c074467ccab.hot-update.js:167
+#: build/index.c7fdf25944672fcbf8d6.hot-update.js:167
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:50
+#: build/index.js:10545
+#: build/index.js:10649
+#: src/LogViewer/LogViewerEntries.js:142
+#: src/LogViewer/LogViewerTopBar.js:17
+#: build/index.0790c1b17c074467ccab.hot-update.js:142
+#: build/index.c7fdf25944672fcbf8d6.hot-update.js:142
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:17
+msgid "Load More"
+msgstr ""
+
+#: build/index.c7fdf25944672fcbf8d6.hot-update.js:167
+#: build/index.c7fdf25944672fcbf8d6.hot-update.js:142
+msgid "Loading..."
+msgstr ""
+
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:66
+#: build/index.js:10665
+#: src/LogViewer/LogViewerTopBar.js:31
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:31
+msgid "Clear"
+msgstr ""
+
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:69
+#: build/index.js:10668
+#: src/LogViewer/LogViewerTopBar.js:34
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:34
+msgid "Save and Clear"
+msgstr ""
+
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:73
+#: build/index.js:10672
+#: src/LogViewer/LogViewerTopBar.js:37
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:37
+msgid "Download"
+msgstr ""
+
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:75
+#: build/index.js:10674
+#: src/LogViewer/LogViewerTopBar.js:43
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:43
+msgid "Collapse from Fullscreen"
+msgstr ""
+
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:75
+#: build/index.js:10674
+#: src/LogViewer/LogViewerTopBar.js:44
+#: build/index.f41be164f22f4c3d8b6a.hot-update.js:44
+msgid "Expand to Fullscreen"
+msgstr ""
+
+#: build/index.js:10334
+#: src/LogViewer/LogViewerBottomBar.js:8
+msgid "Log path:"
+msgstr ""
+
+#: build/index.js:10338
+#: src/LogViewer/LogViewerBottomBar.js:13
+msgid "lines"
+msgstr ""
+
+#: build/index.js:10342
+#: src/LogViewer/LogViewerBottomBar.js:17
+msgid "Last Modified:"
+msgstr ""
+
+#: build/index.js:10921
+#: build/index.js:10936
+#: src/Pages/About.js:11
+#: src/Pages/About.js:43
+msgid "Admin Debug Tools is a WordPress plugin that allows you to easily debug your WordPress website. It provides a simple interface to view and download the debug log file."
+msgstr ""
+
+#: build/index.js:10923
+#: build/index.js:10938
+#: src/Pages/About.js:17
+#: src/Pages/About.js:49
+msgid "You can also configure the plugin to automatically sync the debug log file with the server."
+msgstr ""
+
+#. translators: %s: URL to the plugin page on WordPress.org
+#: build/index.js:10927
+#: build/index.js:10942
+#: src/Pages/About.js:26
+#: src/Pages/About.js:58
+msgid "For more information, visit the <a href=\"%s\">plugin page on WordPress.org</a>."
+msgstr ""
+
+#: build/index.js:11077
+#: src/Pages/Config.js:56
+msgid "Settings saved."
+msgstr ""
+
+#. translators: %s: message explaining why settings were saved with a warning.
+#: build/index.js:11081
+#: src/Pages/Config.js:61
+msgid "Settings saved but something went wrong when testing the debug log. %s"
+msgstr ""
+
+#: build/index.js:11084
+#: src/Pages/Config.js:70
+msgid "Error on saving settings."
+msgstr ""
+
+#: build/index.js:11090
+#: src/Pages/Config.js:79
+msgid "Enable WP_DEBUG mode."
+msgstr ""
+
+#: build/index.js:11105
+#: src/Pages/Config.js:94
+msgid "Enable Debug logging to the wp-content/debug.log or custom file."
+msgstr ""
+
+#: build/index.js:11112
+#: src/Pages/Config.js:99
+msgid "Customize path for debug.log file"
+msgstr ""
+
+#: build/index.js:11137
+#: src/Pages/Config.js:125
+msgid "Path to log file"
+msgstr ""
+
+#: build/index.js:11142
+#: src/Pages/Config.js:129
+msgid "Tips:"
+msgstr ""
+
+#: build/index.js:11144
+#: src/Pages/Config.js:132
+msgid "- Use the {absPath} or {wpContentDir} to set relative paths. Ex.: {wpContentDir}/logs/debug.log."
+msgstr ""
+
+#: build/index.js:11146
+#: src/Pages/Config.js:138
+msgid "- Leave it blank to keep the debug log file in its default location (`wp-content/debug.log`)."
+msgstr ""
+
+#: build/index.js:11151
+#: src/Pages/Config.js:151
+msgid "Disable display of errors and warnings."
+msgstr ""
+
+#: build/index.js:11166
+#: src/Pages/Config.js:166
+msgid "Use dev versions of core JS and CSS files (only needed if you are modifying these core files or developing plugins/themes)."
+msgstr ""
+
+#: build/index.js:11181
+#: src/Pages/Config.js:184
+msgid "Enable WP_DISABLE_FATAL_ERROR_HANDLER mode."
+msgstr ""
+
+#: build/index.js:11196
+#: src/Pages/Config.js:203
+msgid "Enable SAVEQUERIES mode."
+msgstr ""
+
+#: build/index.js:11219
+#: src/Pages/Config.js:224
+msgid "Configure the following WordPress constants to enable debugging features. For more information, visit: "
+msgstr ""
+
+#: build/index.js:11259
+#: src/Pages/Config.js:268
+msgid "Save Changes"
+msgstr ""
+
+#: build/index.js:11379
+#: src/Pages/LogViewer.js:32
+msgid "Error fetching WP config."
+msgstr ""
+
+#: build/index.js:11390
+#: src/Pages/LogViewer.js:42
+msgid "Error fetching updates from WP debug log file."
+msgstr ""
+
+#: build/index.js:11449
+#: src/Pages/LogViewer.js:108
+msgid "Enable or disable logging"
+msgstr ""
+
+#: build/index.js:11453
+#: src/Pages/LogViewer.js:110
+msgid "WP Logging Enabled:"
+msgstr ""
+
+#: build/index.js:11458
+#: src/Pages/LogViewer.js:118
+msgid "Watch for updates automatically"
+msgstr ""
+
+#: build/index.js:11462
+#: src/Pages/LogViewer.js:120
+msgid "Auto Sync:"
+msgstr ""
