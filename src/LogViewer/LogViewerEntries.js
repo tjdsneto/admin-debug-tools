@@ -99,7 +99,9 @@ export function LogViewerEntries({ entries, isFetching, onScrollOnTop, showLoadM
 
 		if (maxScroll === translateY) {
 			onAction('loadUp');
-			state.cancel();
+			if (state.cancel) {
+				state.cancel();
+			}
 		}
 
 		setSpring({
