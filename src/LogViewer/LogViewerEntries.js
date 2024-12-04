@@ -37,6 +37,9 @@ export function LogViewerEntries({ entries, isFetching, onScrollOnTop, showLoadM
 
 	useEffect(() => {
 		scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+	}, []);
+
+	useEffect(() => {
 		const newIsScrollOnTop = scrollRef.current.scrollTop === 0;
 		setIsScrollOnStop(newIsScrollOnTop);
 		onScrollOnTop(newIsScrollOnTop);
