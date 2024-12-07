@@ -108,11 +108,17 @@ class Pages {
 			return $footer_text;
 		}
 
-		$plugin_data = get_plugin_data( ADMIN_DEBUG_TOOLS_FILE, false, false );
-		$url         = 'https://wordpress.org/plugins/admin-debug-log/#developers';
+		$bug_report_url      = 'https://github.com/tjdsneto/admin-debug-tools/issues/new?template=bug_report.md';
+		$suggest_feature_url = 'https://github.com/tjdsneto/admin-debug-tools/issues/new?template=feature_request.md';
 
-		/* translators: %1$s - Admin Debug Tools plugin URL, %2$s - plugin version number */
-		$footer_text = sprintf( __( '<a href="%1$s" target="_blank" rel="noopener noreferrer">Admin Debug Tools v%2$s</a>', 'admin-debug-tools' ), $url, $plugin_data['Version'] );
+		$plugin_data = get_plugin_data( ADMIN_DEBUG_TOOLS_FILE, false, false );
+		$url         = 'https://wordpress.org/plugins/admin-debug-tools/#developers';
+
+		$bug_report_link      = sprintf( '<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>', $bug_report_url, __( 'Report a bug', 'admin-debug-tools' ) );
+		$suggest_feature_link = sprintf( '<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>', $suggest_feature_url, __( 'Suggest a feature', 'admin-debug-tools' ) );
+		$plugin_link          = sprintf( '<a href="%1$s" target="_blank" rel="noopener noreferrer">Admin Debug Tools v%2$s</a>', $url, $plugin_data['Version'] );
+
+		$footer_text = sprintf( '%s | %s | %s', $bug_report_link, $suggest_feature_link, $plugin_link );
 		return $footer_text;
 	}
 
@@ -130,7 +136,7 @@ class Pages {
 			return $text;
 		}
 
-		$url = 'https://wordpress.org/support/plugin/admin-debug-log/reviews?filter=5#new-post';
+		$url = 'https://wordpress.org/support/plugin/admin-debug-tools/reviews?filter=5#new-post';
 
 		/* translators: %1$s - Adming Debug Log plugin reviews url - Adming Debug Log is the name of the plugin. */
 		$text = sprintf( __( 'Thank you for using the <strong>Adming Debug Log</strong> plugin! Please, let us know how are you liking it on <a href="%1$s" target="_blank" rel="noopener noreferrer">WordPress.org</a> and help us improve.', 'admin-debug-tools' ), $url );

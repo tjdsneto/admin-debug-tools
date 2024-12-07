@@ -1,5 +1,5 @@
 .ExternalLink {
-	color: var(--wp-admin-theme-color);
+	color: var(--wp-components-color-accent, var(--wp-admin-theme-color, #3858e9));
 
 	svg {
 		display: inline;
