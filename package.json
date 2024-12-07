@@ -11,7 +11,7 @@
 		"format": "wp-scripts format ./src",
 		"check-engines": "wp-scripts check-engines",
 		"check-licenses": "wp-scripts check-licenses",
-		"update-i18n": "wp i18n make-pot . languages/admin-debug-tools.pot && wp i18n update-po languages/admin-debug-tools.pot && wp i18n make-mo languages && wp i18n make-json languages --no-purge"
+		"update-i18n": "wp i18n make-pot . --exclude=release languages/admin-debug-tools.pot && wp i18n update-po languages/admin-debug-tools.pot && wp i18n make-mo languages && wp i18n make-json languages --no-purge"
 	},
 	"author": "",
 	"license": "ISC",
