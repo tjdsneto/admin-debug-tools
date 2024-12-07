@@ -116,6 +116,7 @@ class WpLogParser {
 
 		// Clear the file using WP_Filesystem.
 		if ( ! $this->filesystem->put_contents( $this->file->getPathname(), '' ) ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exceptions are not meant to be outputted as HTML.
 			throw new \Exception( __( 'Unable to clear file contents.', 'admin-debug-tools' ) );
 		}
 
