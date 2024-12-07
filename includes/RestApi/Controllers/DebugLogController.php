@@ -61,9 +61,9 @@ class DebugLogController extends BaseController {
 			return new \WP_REST_Response( null, 404 );
 		}
 
-		if ('downwards' === $direction) {
+		if ( 'downwards' === $direction ) {
 			$content_set = empty( $request['seek'] ) ? $this->wp_log_parser->get_last_lines( $lines_param ) : $this->wp_log_parser->get_from_line( $start_line );
-		} elseif ('upwards' === $direction) {
+		} elseif ( 'upwards' === $direction ) {
 			$content_set = $this->wp_log_parser->get_last_lines( $lines_param, $start_line );
 		} else {
 			return new \WP_REST_Response( null, 400 );

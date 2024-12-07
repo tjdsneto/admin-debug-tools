@@ -71,7 +71,7 @@ class FileContentGetter {
 	 * @return FileContent The file content.
 	 */
 	public function get_last_lines( int $line_number, int $end_line = null ) {
-		$start_line = max( (null !== $end_line ? $end_line : $this->last_line) - $line_number, 0 );
+		$start_line = max( ( null !== $end_line ? $end_line : $this->last_line ) - $line_number, 0 );
 		return $this->get_from_line( $start_line, $end_line );
 	}
 

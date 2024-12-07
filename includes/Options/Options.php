@@ -52,7 +52,7 @@ class Options {
 	 */
 	public function default_options() {
 		$options = array(
-			'installed'      => time(),
+			'installed' => time(),
 		);
 
 		return apply_filters( 'admin_debug_tools_default_options', $options );

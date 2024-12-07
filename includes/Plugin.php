@@ -137,12 +137,14 @@ class Plugin {
 
 				// Validate the log file path.
 				if ( empty( $log_file_path ) || ! file_exists( $log_file_path ) ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exceptions are not meant to be outputted as HTML.
 					throw new UserFrienldlyException( __( 'Log file not found or inaccessible.', 'admin-debug-tools' ) );
 				}
 
 				try {
 					return new WpLogParser( new \SplFileObject( $log_file_path, 'r' ) );
 				} catch ( \Exception $e ) {
+					// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exceptions are not meant to be outputted as HTML.
 					throw new UserFrienldlyException( __( 'Error while trying to parse the log file.', 'admin-debug-tools' ), 0, $e );
 				}
 			}

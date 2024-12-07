@@ -116,17 +116,19 @@ class WpLogParser {
 
 		// Clear the file using WP_Filesystem.
 		if ( ! $this->filesystem->put_contents( $this->file->getPathname(), '' ) ) {
-			throw new \Exception( 'Unable to clear file contents.' );
+			throw new \Exception( __( 'Unable to clear file contents.', 'admin-debug-tools' ) );
 		}
 
 		if ( $should_backup ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- This is an intentional log message.
-			error_log( "Log file saved at '{$backup_path}' and cleared." );
+			// phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_error_log -- This is an intentional log message.
+			// translators: %s: The path where the log file is saved.
+			error_log( sprintf( __( "Log file saved at '%s' and cleared.", 'admin-debug-tools' ), $backup_path ) );
+			// phpcs:enable WordPress.PHP.DevelopmentFunctions.error_log_error_log
 			return;
 		}
 
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- This is an intentional log message.
-		error_log( 'Log file cleared.' );
+		error_log( __( 'Log file cleared.', 'admin-debug-tools' ) );
 	}
 
 	/**
@@ -143,7 +145,8 @@ class WpLogParser {
 		$backup_path = $file_info['dirname'] . '/' . $file_info['filename'] . '_' . $timestamp . '.' . $file_info['extension'];
 
 		if ( ! file_exists( $file_path ) || ! copy( $file_path, $backup_path ) ) {
-			throw new \Exception( 'Unable to create backup file.' );
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- The exceptions are not meant to be outputted as HTML.
+			throw new \Exception( __( 'Unable to create backup file.', 'admin-debug-tools' ) );
 		}
 
 		return $backup_path;

@@ -24,14 +24,14 @@ class Arr {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array  $array The array from which the value should be retrieved.
+	 * @param array  $arr The array from which the value should be retrieved.
 	 * @param string $key The key of the value to retrieve, using "dot" notation for nested values.
 	 * @param mixed  $fallback The value to return if the specified key does not exist.
 	 *
 	 * @return mixed The value at the specified key in the array, or the fallback value if the key does not exist.
 	 */
-	public static function get( $array, $key, $fallback = null ) {
-		$current = $array;
+	public static function get( $arr, $key, $fallback = null ) {
+		$current = $arr;
 
 		if ( ! empty( $key ) ) {
 			$keys = explode( '.', $key );
@@ -52,17 +52,17 @@ class Arr {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param array  $array The array in which the value should be set.
+	 * @param array  $arr The array in which the value should be set.
 	 * @param string $key The key at which the value should be set, using "dot" notation for nested values.
 	 * @param mixed  $value The value to set.
 	 *
 	 * @return array The array with the value set.
 	 */
-	public static function set( &$array, $key, $value ) {
+	public static function set( &$arr, $key, $value ) {
 
 		if ( is_null( $key ) ) {
-			$array = $value;
-			return $array;
+			$arr = $value;
+			return $arr;
 		}
 
 		$keys = explode( '.', $key );
@@ -77,15 +77,15 @@ class Arr {
 			// If the key doesn't exist at this depth, we will just create an empty array
 			// to hold the next value, allowing us to create the arrays to hold final
 			// values at the correct depth. Then we'll keep digging into the array.
-			if ( ! isset( $array[ $key ] ) || ! is_array( $array[ $key ] ) ) {
-				$array[ $key ] = array();
+			if ( ! isset( $arr[ $key ] ) || ! is_array( $arr[ $key ] ) ) {
+				$arr[ $key ] = array();
 			}
 
-			$array = &$array[ $key ];
+			$arr = &$arr[ $key ];
 		}
 
-		$array[ array_shift( $keys ) ] = $value;
+		$arr[ array_shift( $keys ) ] = $value;
 
-		return $array;
+		return $arr;
 	}
 }
