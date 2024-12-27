@@ -7,11 +7,22 @@ import { createUseGesture, dragAction, wheelAction } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
 import { usePrevious } from '../hooks/usePrevious';
 
-export function LogViewerEntries({ entries, isFetching, onScrollOnTop, showLoadMore, onAction }) {
+const checkScrollOnBottom = (scrollableEl) => {
+	const diff = Math.abs(scrollableEl.clientHeight - (scrollableEl.scrollHeight - scrollableEl.scrollTop));
+
+	// The diff was never zero and I couldn't figure out why, so I changed the condition to check if the diff is less than 1.
+	return diff < 1;
+};
+
+export function LogViewerEntries({ entries, fetchStatus, onScrollOnTop, showLoadMore, onAction }) {
 	const scrollRef = useRef(null);
 	const scrollMuch = useRef(0);
 	const divRef = useRef();
-	const [isScrollOnTop, setIsScrollOnStop] = useState(false);
+	const [isScrollOnTop, setIsScrollOnTop] = useState(false);
+	const [isScrollOnBottom, setIsScrollOnBottom] = useState(false);
+	const wasScrollOnBottom = usePrevious(isScrollOnBottom);
+
+	const { isFetching, hasUpdated, isFirstFetch } = fetchStatus;
 	const wasFetching = usePrevious(isFetching);
 
 	const useGesture = createUseGesture([dragAction, wheelAction]);
@@ -36,12 +47,29 @@ export function LogViewerEntries({ entries, isFetching, onScrollOnTop, showLoadM
 	}));
 
 	useEffect(() => {
-		scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-	}, []);
+		if (scrollRef.current) {
+			const isOnBottom = isScrollOnBottom || wasScrollOnBottom || checkScrollOnBottom(scrollRef.current);
+
+			// console.log('Should auto scroll down?', {
+			// 	isOnBottom,
+			// 	isScrollOnBottom,
+			// 	wasScrollOnBottom,
+			// 	hasUpdated,
+			// 	isFirstFetch,
+			// });
+
+			if ((isOnBottom && hasUpdated) || isFirstFetch) {
+				// console.log('Auto Scroll Down', scrollRef.current.scrollHeight);
+				scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+				window.scrollRef = scrollRef.current;
+				setIsScrollOnBottom(true);
+			}
+		}
+	}, [hasUpdated, isFirstFetch, isScrollOnBottom, wasScrollOnBottom]);
 
 	useEffect(() => {
 		const newIsScrollOnTop = scrollRef.current.scrollTop === 0;
-		setIsScrollOnStop(newIsScrollOnTop);
+		setIsScrollOnTop(newIsScrollOnTop);
 		onScrollOnTop(newIsScrollOnTop);
 	}, [onScrollOnTop]);
 
@@ -124,10 +152,15 @@ export function LogViewerEntries({ entries, isFetching, onScrollOnTop, showLoadM
 		onWheel: () => {
 			const newIsScrollOnTop = scrollRef.current.scrollTop === 0;
 			if (newIsScrollOnTop !== isScrollOnTop) {
-				setIsScrollOnStop(newIsScrollOnTop);
+				setIsScrollOnTop(newIsScrollOnTop);
 
 				// Inform the parent component that the scroll is on top. The Load More button only should only be shown when the scroll is on top.
 				onScrollOnTop(newIsScrollOnTop);
+			}
+
+			const isOnBottom = checkScrollOnBottom(scrollRef.current);
+			if (isOnBottom !== isScrollOnBottom) {
+				setIsScrollOnBottom(isOnBottom);
 			}
 		},
 	});

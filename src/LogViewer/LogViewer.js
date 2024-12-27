@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { LogViewerTopBar } from './LogViewerTopBar';
 import { LogViewerBottomBar } from './LogViewerBottomBar';
 import { LogViewerEntries } from './LogViewerEntries';
+import { usePrevious } from '../hooks/usePrevious';
 import { checkSearchMatch, collapseRepeated, initialSearchState } from './functions';
 import './themes.scss';
 
@@ -11,6 +12,14 @@ export const LogViewer = ({ data, onAction, theme: themeSlug, isFetching }) => {
 	const [search, setSearch] = useState(initialSearchState);
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [isScrollOnTop, setIsScrollOnStop] = useState(false);
+	const lastLine = lines[lines.length - 1]?.line_number;
+	const prevLastLine = usePrevious(lastLine);
+
+	const fetchStatus = {
+		isFetching,
+		hasUpdated: lastLine !== prevLastLine,
+		isFirstFetch: lines && !prevLastLine,
+	};
 
 	const handleSearchChange = (newSearch) => {
 		setSearch({ ...search, ...newSearch });
@@ -63,9 +72,9 @@ export const LogViewer = ({ data, onAction, theme: themeSlug, isFetching }) => {
 			<LogViewerEntries
 				entries={filteredLines}
 				onAction={onAction}
-				isFetching={isFetching}
 				showLoadMore={isScrollOnTop && lines.length && lines[0].line_number > 1}
 				onScrollOnTop={handleScrollOnTop}
+				fetchStatus={fetchStatus}
 			/>
 			<LogViewerBottomBar data={data} />
 		</div>
