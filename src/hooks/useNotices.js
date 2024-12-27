@@ -25,8 +25,8 @@ export const useNotices = () => {
 			timeoutsRef.current.push(
 				setTimeout(() => {
 					removeNotice(data.notice.id);
-				}, 5000)
-			); // Auto-dismiss the notice after 5 seconds
+				}, 8000)
+			); // Auto-dismiss the notice after 8 seconds
 		}
 	};
 

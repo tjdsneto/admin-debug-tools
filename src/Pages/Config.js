@@ -10,6 +10,7 @@ import { StatusWrapper } from '../Common/StatusWrapper';
 import { PageBody } from '../Common/Layout/PageBody';
 import { Notices } from '../Common/WpComponents/Notices';
 import { useNotices } from '../hooks/useNotices';
+import WpConfigNotWritable from '../Common/Error/WpConfigNotWritable';
 
 export const Config = () => {
 	const { config, updateConfig, isUpdating, didUpdate, didntUpdate } = useWpConfig();
@@ -67,7 +68,22 @@ export const Config = () => {
 				);
 			}
 		} catch (error) {
-			createErrorNotice(__('Error on saving settings.', 'admin-debug-tools'));
+			let errMessage = error.message;
+
+			if (error instanceof WpConfigNotWritable) {
+				errMessage +=
+					' ' +
+					sprintf(
+						/* translators: %s: username that needs write permission */
+						__(
+							'Please make sure the wp-config.php file is writable by the user `%s`.',
+							'admin-debug-tools'
+						),
+						error.data.user
+					);
+			}
+
+			createErrorNotice(__('Error on saving settings.', 'admin-debug-tools') + ' ' + errMessage);
 		} finally {
 		}
 	};

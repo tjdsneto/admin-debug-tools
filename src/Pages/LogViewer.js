@@ -90,6 +90,11 @@ export const LogViewer = () => {
 				toggleAutoSync();
 			}
 		} catch (error) {
+			createErrorNotice(__('Error toggling WP logging.', 'admin-debug-tools') + ` ${error.message}`, {
+				type: 'snackbar',
+				icon: <Dashicon icon="no" />,
+				explicitDismiss: true,
+			});
 		} finally {
 		}
 	};

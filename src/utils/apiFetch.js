@@ -1,4 +1,5 @@
 import { default as wpApiFetch } from '@wordpress/api-fetch';
+import WpConfigNotWritable from '../Common/Error/WpConfigNotWritable';
 
 /**
  * Fetches data from the API.
@@ -41,16 +42,32 @@ export async function apiFetch(args) {
 			...rest,
 			...options,
 		}).then((response) => {
-			if (response.error) {
-				throw new Error(response.error);
-			}
 			return response;
 		});
 		return { data };
 	} catch (error) {
-		throw new Error(error?.error || 'An unexpected error occurred.');
+		handleErrorResponse(error);
+
+		// eslint-disable-next-line no-console
+		console.error(error);
+		throw new Error('An unexpected error occurred.');
 	}
 }
+
+const handleErrorResponse = (response) => {
+	const errCodeMap = {
+		'wp-config-not-writable': WpConfigNotWritable,
+	};
+	if (response.code && errCodeMap[response.code]) {
+		throw new errCodeMap[response.code](response.message, response.data);
+	}
+	if (response.error) {
+		throw new Error(response.error);
+	}
+	if (response.message) {
+		throw new Error(response.message);
+	}
+};
 
 export const getSseUrl = (timeInterval) => {
 	return window.AppData.sseUrl + '?_wpnonce=' + wpApiFetch.nonceMiddleware?.nonce + '&sseti=' + timeInterval;

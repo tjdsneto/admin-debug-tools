@@ -171,11 +171,26 @@ class WpConfigController extends BaseController {
 				);
 			}
 		} catch ( \Exception $e ) {
+			$data = [
+				'success' => false,
+			];
+
+			$data['message'] = $e->getMessage();
+
+			if ('wp-config.php does not exist.' === $data['message']) {
+				$data['message'] = __( 'The wp-config.php file does not exist.', 'admin-debug-tools' );
+			}
+
+			if ('wp-config.php is not writable.' === $data['message']) {
+				$data['code'] = 'wp-config-not-writable';
+				$data['message'] = __( 'The wp-config.php file is not writable.', 'admin-debug-tools' );
+				$data['data'] = [
+					'user' => get_current_user(),
+				];
+			}
+
 			return new \WP_REST_Response(
-				array(
-					'success' => false,
-					'message' => $e->getMessage(),
-				),
+				$data,
 				500
 			);
 		}

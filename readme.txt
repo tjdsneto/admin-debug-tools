@@ -80,6 +80,71 @@ The code is also optimized to avoid memory issues when loading large log files, 
 - Download the log file and use a local tool to analyze it;
 - Clear the log file to start fresh;
 
+= How to fix the error "The wp-config.php is not writable"? =
+
+Admin Debug Tools needs write access to your `wp-config.php` file to enable and disable debug mode. If you're seeing the error "The wp-config.php is not writable", you need to give write permissions to the file yourself or ask your hosting provider to do it for you.
+
+You can change the permissions of the `wp-config.php` file using an FTP client, a file manager in your hosting control panel, or via SSH. The file should have the permissions set to `644` or `640`.
+
+**Using SSH:**
+
+<br />
+
+1. **Connect to your server via SSH:**
+   - Open your terminal (Mac/Linux) or Command Prompt (Windows).
+   - Use the `ssh` command to connect to your server. Replace `username` and `hostname` with your actual SSH username and server hostname.
+
+     ```
+     ssh username@hostname
+     ```<br /><br />
+<br />
+2. **Navigate to your WordPress directory:**
+   - Use the `cd` command to change to the directory where your WordPress installation is located.
+
+     ```
+     cd /path/to/your/wordpress/directory
+     ```<br /><br />
+<br />
+3. **Check the existing permissions of `wp-config.php`:**
+   - Use the `ls -l` command to list the file permissions.
+
+     ```
+     ls -l wp-config.php
+     ```<br /><br />
+<br />
+   - The output will show the current permissions. For example:
+
+     ```
+     -rw-r--r-- 1 username group 1234 Jan 01 12:34 wp-config.php
+     ```<br /><br />
+<br />
+4. **Update the permissions of `wp-config.php`:**
+   - Use the `chmod` command to change the file permissions to `644` or `640`.
+
+     ```
+     chmod 644 wp-config.php
+     ```<br /><br />
+<br />
+   - Or, to set the permissions to `640`:
+
+     ```
+     chmod 640 wp-config.php
+     ```<br /><br />
+<br />
+5. **Verify the updated permissions:**
+   - Use the `ls -l` command again to confirm the changes.
+
+     ```
+     ls -l wp-config.php
+     ```<br /><br />
+<br />
+   - The output should now reflect the updated permissions. For example:
+
+     ```
+     -rw-r--r-- 1 username group 1234 Jan 01 12:34 wp-config.php
+     ```<br /><br />
+<br />
+
 = What users can access Admin Debug Tools? =
 
 By default, only users with the `manage_options` capability can access the Debug Log screen. This includes Administrators and Super Admins on multisite networks.
