@@ -9,7 +9,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Admin Debug Tools
- * Plugin URI:        https://tjdsneto.com/admin-debug-tools
+ * Plugin URI:        https://github.com/tjdsneto/admin-debug-tools
  * Description:       Admin Debug Tools makes it easy to manage your site's logs and debug settings directly from the dashboard, without needing to edit backend files.
  * Version:           1.0.0
  * Requires at least: 6.0
