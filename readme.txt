@@ -50,6 +50,13 @@ Here are some of the features I have on my radar and plan to implement in future
 - Debug helper functions to use in your code and print debug information to the log file;
 - Troubleshoot session mode to disable plugins and themes, and separate debugging from the main site;
 
+=== Development ===
+
+Admin Debug Tools is open source and we welcome contributions! You can find the source code and development instructions in our GitHub repository:
+
+https://github.com/tjdsneto/admin-debug-tools
+
+If you're interested in contributing, please check the repository for development setup instructions, coding standards, and contribution guidelines.
 
 == Installation ==
 1. Upload the plugin files to the `/wp-content/plugins/admin-debug-tools` directory, or install the plugin through the WordPress plugins screen directly.
@@ -148,30 +155,3 @@ You can change the permissions of the `wp-config.php` file using an FTP client, 
 By default, only users with the `manage_options` capability can access the Debug Log screen. This includes Administrators and Super Admins on multisite networks.
 
 But you can change this by using the `wp_debug_assistant_capability` filter. Here's an example of how you can change the capability to `edit_posts`:
-
-```php
-add_filter( 'admin_debug_tools_access_capability', function() {
-	return 'edit_posts';
-} );
-```
-
-_I shall make this easier to customize in the future._
-
-== Changelog ==
-
-= 1.0.0 =
-* Initial release of Admin Debug Tools. Enjoy the ability to manage your debug log and settings from the WP Admin area!
-
-== Screenshots ==
-
-1. Debug Log screen
-2. Config screen
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release of Admin Debug Tools. Enjoy the ability to manage your debug log and settings from the WP Admin area!
-
-
-
-
