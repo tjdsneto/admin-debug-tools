@@ -1,4 +1,4 @@
-# Copyright (C) 2024 Tiago Neto
+# Copyright (C) 2025 Tiago Neto
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-27T17:35:43+00:00\n"
+"POT-Creation-Date: 2025-01-13T01:00:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: admin-debug-tools\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #. Plugin URI of the plugin
 #: admin-debug-tools.php
-msgid "https://tjdsneto.com/admin-debug-tools"
+msgid "https://github.com/tjdsneto/admin-debug-tools"
 msgstr ""
 
 #. Description of the plugin
