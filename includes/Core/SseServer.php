@@ -143,8 +143,7 @@ class SseServer {
 	public function dispatch( $msg, $event_type = 'message' ) {
 		$data = "event: {$event_type}" . PHP_EOL . "data: $msg" . PHP_EOL . PHP_EOL;
 
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Raw output needed for SSE JSON data.
-		echo $data;
+		echo wp_kses_post($data);
 		if ( ob_get_level() > 0 ) {
 			ob_flush();
 		}
