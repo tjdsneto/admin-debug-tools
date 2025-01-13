@@ -54,7 +54,6 @@ function admin_debug_tools_textdomain() {
 	$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
 	load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-	load_plugin_textdomain( $domain, false, dirname( plugin_basename( ADMIN_DEBUG_TOOLS_FILE ) ) . '/languages/' );
 }
 
 $plugin = \AdminDebugTools\Plugin\Plugin::get_instance();
