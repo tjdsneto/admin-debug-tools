@@ -49,7 +49,7 @@ export const LogLine = ({ line }) => {
 				</span>
 			</td>
 
-			<td className="p-[5px] text-center">
+			<td className="p-[5px] min-w-[50px] w-[50px] text-center">
 				{/* Show expand/collapse button if there is children */}
 				{hasChildren && <ChildrenExpandButton isOpen={isOpen} onClick={toggleOpen} />}
 
